@@ -1,0 +1,25 @@
+PODS:
+  - SDWebImage (4.4.3):
+    - SDWebImage/Core (= 4.4.3)
+  - SDWebImage/Core (4.4.3)
+  - XHBrowseView (0.1.0):
+    - SDWebImage
+
+DEPENDENCIES:
+  - XHBrowseView (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SDWebImage
+
+EXTERNAL SOURCES:
+  XHBrowseView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+  XHBrowseView: 11e4cd4c3f3ee9c8db455ca51a51dcef4f8e9aba
+
+PODFILE CHECKSUM: e3548480fe2e3486feabcf9f743401528d4244bf
+
+COCOAPODS: 1.5.3

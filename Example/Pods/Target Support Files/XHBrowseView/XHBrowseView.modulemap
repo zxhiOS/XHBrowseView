@@ -1,0 +1,6 @@
+framework module XHBrowseView {
+  umbrella header "XHBrowseView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -77,7 +77,7 @@ static NSTimeInterval const kAnimationTimeInterval = 0.3;
     [self.view.window addSubview:tempImageView];
     
     [self dismissViewControllerAnimated:NO completion:nil];
-    if (targetTemp.origin.y <= 0) {
+    if (targetTemp.origin.y > kScreenHeight || targetTemp.origin.y < 0) {
         
         [UIView animateWithDuration:kAnimationTimeInterval animations:^{
             

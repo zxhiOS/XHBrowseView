@@ -24,8 +24,6 @@
 
 @property (nonatomic, assign)CGRect imageFrame;/**<#注释#>**/
 
-@property (nonatomic, assign)BOOL hasJudge;/**<#注释#>**/
-
 @end
 
 @implementation BrowseViewCell
@@ -77,22 +75,20 @@
 - (void)panAction:(UIPanGestureRecognizer *)panGecognizer{
     
     if (panGecognizer.state == UIGestureRecognizerStateBegan) {
-        self.imageContainerView.userInteractionEnabled = YES;
-        self.hasJudge = NO;
+      
        self.startPoint = [panGecognizer locationInView:self];
        self.imageCenter = self.imageContainerView.center;
        self.imageFrame = self.imageContainerView.frame;
     }else if(panGecognizer.state == UIGestureRecognizerStateEnded){
-        self.hasJudge = NO;
-        self.imageContainerView.userInteractionEnabled = YES;
+      
         CGPoint point = [panGecognizer locationInView:self];
-        CGFloat diffY = point.y - self.startPoint.y;
-        if (diffY > kScreenHeight / 2.0) {
+        CGFloat diffY =  point.y - self.startPoint.y;
+        
+        if (fabs(diffY) > kScreenHeight / 2.5) {
             
             if (self.singleTapGestureBlock) {
                 self.singleTapGestureBlock();
             }
-            
         }else{
             
             self.imageContainerView.frame = self.imageFrame;
@@ -108,16 +104,15 @@
         
         CGFloat diffX = point.x - self.startPoint.x;
         CGFloat diffY = point.y - self.startPoint.y;
-        if (diffY > 0) {
-            CGFloat rate = (kScreenHeight - diffY)/kScreenHeight;
-            CGFloat width = self.imageFrame.size.width * rate;
-            CGFloat heigth = self.imageFrame.size.height * rate;
-            self.imageContainerView.frame = CGRectMake(0, 0, width, heigth);
-            CGFloat x = self.imageCenter.x + diffX;
-            CGFloat y = self.imageCenter.y + diffY;
-            self.imageContainerView.center = CGPointMake(x, y);
-            self.imageView.frame = self.imageContainerView.bounds;
-        }
+        
+        CGFloat rate = (kScreenHeight - fabs(diffY))/kScreenHeight;
+        CGFloat width = self.imageFrame.size.width * rate;
+        CGFloat heigth = self.imageFrame.size.height * rate;
+        self.imageContainerView.frame = CGRectMake(0, 0, width, heigth);
+        CGFloat x = self.imageCenter.x + diffX;
+        CGFloat y = self.imageCenter.y + diffY;
+        self.imageContainerView.center = CGPointMake(x, y);
+        self.imageView.frame = self.imageContainerView.bounds;
         
     }
     
